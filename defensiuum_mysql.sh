@@ -23,7 +23,7 @@ fi
 docker pull mysql:5.7
 
 # Rodar o container MySQL com as variáveis de ambiente
-docker run --name defensiuum-mysql-5.7 -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -d -p ${MYSQL_defensiuum_PORT}:3306 mysql:5.7
+docker run --name defensiuum-mysql-5.7 -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -d -p ${MYSQL_DEFENSIUUM_PORT}:3306 mysql:5.7
 
 # Aguardar o MySQL estar pronto para aceitar conexões
 until docker logs defensiuum-mysql-5.7 2>&1 | grep -m 1 "ready for connections"; do
@@ -33,4 +33,4 @@ done
 # Reiniciar o container
 docker restart defensiuum-mysql-5.7
 
-echo "MySQL está rodando na porta ${MYSQL_defensiuum_PORT}, e o IP do container é: $(docker inspect --format '{{ .NetworkSettings.Networks.bridge.IPAddress }}' defensiuum-mysql-5.7)"
+echo "MySQL está rodando na porta ${MYSQL_DEFENSIUUM_PORT}, e o IP do container é: $(docker inspect --format '{{ .NetworkSettings.Networks.bridge.IPAddress }}' defensiuum-mysql-5.7)"
